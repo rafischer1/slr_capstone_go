@@ -1,0 +1,7 @@
+development:
+    driver: postgres
+    open: user=artiefischer dbname=captsonedb sslmode=disable
+
+production:
+  driver: postgres
+  connection: process.env.DATABASE_URL
