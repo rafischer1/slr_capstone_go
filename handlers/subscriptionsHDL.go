@@ -37,12 +37,13 @@ func GetAllSubs(w http.ResponseWriter, req *http.Request) {
 
 // PostSub is a function
 func PostSub(w http.ResponseWriter, req *http.Request) {
+	enableCors(&w)
 	fmt.Printf("In the handler post req.Body: %+v", req.Method)
 	if req.Method == "OPTIONS" {
 		fmt.Println("Options in POST:", req.Method)
 	}
 	if req.Method == "POST" {
-		enableCors(&w)
+
 		fmt.Println("header in POST req:", &w)
 		if req.Body != nil {
 			bodyBytes, _ = ioutil.ReadAll(req.Body)
@@ -52,7 +53,6 @@ func PostSub(w http.ResponseWriter, req *http.Request) {
 		req.Body = ioutil.NopCloser(bytes.NewBuffer(bodyBytes))
 		// Use the content
 		bodyString := string(bodyBytes)
-		// body := m.Message{}
 		str := bodyString
 		res := m.Subscriber{}
 		json.Unmarshal([]byte(str), &res)
@@ -60,12 +60,15 @@ func PostSub(w http.ResponseWriter, req *http.Request) {
 
 		err := m.PostSub(res.Phone, res.Location)
 		if err != nil {
-			fmt.Fprint(w, "Content:", err, res.Phone, res.Location)
+			//send the error as JSON
+			json.NewEncoder(w).Encode(err)
 		}
 
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fmt.Fprint(w, "Content:", err, res.Phone, res.Location)
+
+		// encode the response for JSON on the frontened
+		json.NewEncoder(w).Encode(http.StatusOK)
 	}
 }
 
@@ -74,18 +77,28 @@ func DeleteSub(w http.ResponseWriter, req *http.Request) {
 	enableCors(&w)
 	reqPhone := req.URL.String()
 	phone := strings.Split(reqPhone, "/")[2]
-	data, err := m.DeleteSub(phone)
+	res, err := m.DeleteSub(phone)
 	if err != nil {
-		fmt.Fprint(w, "Error on delete:", err)
+		json.NewEncoder(w).Encode(err)
 	}
-	// vars := mux.Vars(req)
+	fmt.Println(res)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	fmt.Fprint(w, "Deleted Entry:", data)
+	json.NewEncoder(w).Encode(http.StatusOK)
 }
 
 func enableCors(w *http.ResponseWriter) {
 	(*w).Header().Set("Access-Control-Allow-Origin", "*")
 	(*w).Header().Set("Access-Control-Allow-Methods", "GET,POST,OPTIONS,DELETE,PUT")
 	(*w).Header().Set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+}
+
+// Define your Error struct
+type MyError struct {
+	msg string
+}
+
+// Create a function Error() string and associate it to the struct.
+func (error *MyError) Error() string {
+	return error.msg
 }

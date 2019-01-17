@@ -62,7 +62,6 @@ func PostSub(Phone string, Location string) error {
 		return errTwo
 	}
 
-	fmt.Printf("Last inserted ID: %v\n", subscription)
 	return errTwo
 }
 
