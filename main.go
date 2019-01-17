@@ -14,7 +14,7 @@ import (
 	"github.com/pressly/goose"
 	"github.com/subosito/gotenv"
 
-	"github.com/rafischer1/react_inbox_db/handlers"
+	h "github.com/rafischer1/slr_capstone_go/handlers"
 )
 
 // db var references sql.DB
@@ -44,11 +44,10 @@ func main() {
 		IdleTimeout:  60 * time.Second,
 	}
 
-	r.HandleFunc("/messages", handlers.GetAll).Methods("GET")
-	r.HandleFunc("/messages/{id}", handlers.GetOne).Methods("GET")
-	r.HandleFunc("/messages", handlers.PostMessage).Methods("POST", "OPTIONS")
-	r.HandleFunc("/messages/{id}", handlers.EditMessage).Methods("PUT", "OPTIONS")
-	r.HandleFunc("/messages/{id}", handlers.DeleteMessage).Methods("DELETE", "OPTIONS")
+	// subscription routing
+	r.HandleFunc("/subscribe", h.GetAllSubs).Methods("GET")
+	r.HandleFunc("/subscribe", h.PostSub).Methods("POST", "OPTIONS")
+	r.HandleFunc("/subscribe/{phone}", h.DeleteSub).Methods("DELETE", "OPTIONS")
 
 	// serve static files
 	r.Handle("/", http.FileServer(http.Dir("static/")))
