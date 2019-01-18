@@ -7,7 +7,6 @@ import (
 	"net/url"
 	"os"
 	"strings"
-	"time"
 )
 
 /**
@@ -21,18 +20,16 @@ import (
 // if there is a POST to the /data route the handler could trigger first a GetAll call to the subscribers table and pass that []string of numbers as one of two parameters to the SendText(numbers, msg) => return twillio http.statust
 
 // SendText will hopefully work someday
-func SendText(Msg string, WindMPH float64, WindDir string, SeaLevelFt float64, time time.Time) {
+func SendText(Msg string) {
 	accountSid, authToken, numberFrom := Init()
 
 	urlStr := "https://api.twilio.com/2010-04-01/Accounts/" + accountSid + "/Messages.json"
 
 	// how to load all the data needed here?
-	fmt.Println("i am in the sms send func:", Msg, time, numberFrom)
-
 	msgData := url.Values{}
 
 	msgData.Set("To", "3024232120")
-	msgData.Set("From", "18563693597")
+	msgData.Set("From", numberFrom)
 	msgData.Set("Body", Msg)
 	msgDataReader := *strings.NewReader(msgData.Encode())
 

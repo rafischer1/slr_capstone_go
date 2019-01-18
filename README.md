@@ -1,27 +1,28 @@
 # Prototype F.A.S. Go Backend for GMRI / City of Portland 🌊
 
+## SMS messaging service
+
+> When a flooding event is *triggered* a POST is made to the database to record the event and the information from the same POT is used to autogenerate a SMS message to all the Subscribers in the database
+
 ## Routes
 
 ```haskell
+SUBSCRIBERS TABLE
+/subscribe
+/subscribe/{phone}/delete/
+
+DATA TABLE
+/data/POST => SMS POST
+/data/GETALL
+
 ADMINS TABLE
 /admins
 /admins/{admin_id}/
-/admins/{admin_id}/edit/
-
-USERS TABLE
-/users
-/users/{user_id}
-/users/{user_id}/edit/
-
-DATA TABLE
-/data
-/data/{datum_id}
-/data/{datum_id}/edit/
+/admins/{admin_id}/delete/
 ```
 
 ```js
 go run *
 
 go build
-
 ```

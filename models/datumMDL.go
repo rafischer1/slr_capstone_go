@@ -2,7 +2,6 @@ package models
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 
 	d "github.com/rafischer1/slr_capstone_go/db"
@@ -56,7 +55,7 @@ func PostData(Msg string, WindMPH float64, WindDir string, SeaLevelFt float64) e
 
 	event := Datum{}
 	var entry []Datum
-	fmt.Println("model data:", Msg, "windmph:", WindMPH, "winddir:", WindDir, "Sea level ft:", SeaLevelFt)
+
 	//Create
 	errTwo := db.QueryRow(`INSERT INTO data(msg, windmph, winddir, sealevelft) VALUES($1, $2, $3, $4) RETURNING *`, Msg, WindMPH, WindDir, SeaLevelFt).Scan(&event.ID, &event.Msg, &event.WindMPH, &event.WindDir, &event.SeaLevelFt, &event.CreatedAt)
 	entry = append(entry, event)

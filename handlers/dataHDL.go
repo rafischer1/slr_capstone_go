@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"time"
 
 	m "github.com/rafischer1/slr_capstone_go/models"
 	"github.com/rafischer1/slr_capstone_go/sms"
@@ -52,8 +51,8 @@ func PostData(w http.ResponseWriter, req *http.Request) {
 		fmt.Println("the whole dang res:", res)
 
 		fmt.Println("res data:", res.Msg, "res windmph:", res.WindMPH, "res winddir:", res.WindDir, "Sea level ft:", res.SeaLevelFt)
-		time := time.Now()
-		defer sms.SendText(res.Msg, res.WindMPH, res.WindDir, res.SeaLevelFt, time)
+
+		defer sms.SendText(res.Msg)
 		err := m.PostData(res.Msg, res.WindMPH, res.WindDir, res.SeaLevelFt)
 		if err != nil {
 			//send the error as JSON
