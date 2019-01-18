@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	d "github.com/rafischer1/slr_Capstone_go/db"
+	d "github.com/rafischer1/slr_capstone_go/db"
 )
 
 // Subscriber struct for the the psql table subscribers

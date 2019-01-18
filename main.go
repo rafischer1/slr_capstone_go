@@ -49,6 +49,10 @@ func main() {
 	r.HandleFunc("/subscribe", h.PostSub).Methods("POST", "OPTIONS")
 	r.HandleFunc("/subscribe/{phone}", h.DeleteSub).Methods("DELETE", "OPTIONS")
 
+	// data routing
+	r.HandleFunc("/data", h.GetAllData).Methods("GET")
+	r.HandleFunc("/data", h.PostData).Methods("POST", "OPTIONS")
+
 	// serve static files
 	r.Handle("/", http.FileServer(http.Dir("public/")))
 

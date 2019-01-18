@@ -38,13 +38,12 @@ func GetAllSubs(w http.ResponseWriter, req *http.Request) {
 // PostSub is a function
 func PostSub(w http.ResponseWriter, req *http.Request) {
 	enableCors(&w)
-	fmt.Printf("In the handler post req.Body: %+v", req.Method)
+
 	if req.Method == "OPTIONS" {
 		fmt.Println("Options in POST:", req.Method)
 	}
 	if req.Method == "POST" {
 
-		fmt.Println("header in POST req:", &w)
 		if req.Body != nil {
 			bodyBytes, _ = ioutil.ReadAll(req.Body)
 		}
