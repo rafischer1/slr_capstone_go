@@ -62,13 +62,15 @@ func PostSub(w http.ResponseWriter, req *http.Request) {
 		if err != nil {
 			//send the error as JSON
 			json.NewEncoder(w).Encode(err)
+		} else {
+
+			w.Header().Set("Content-Type", "application/json")
+			w.WriteHeader(http.StatusOK)
+
+			// encode the response for JSON on the frontened
+			json.NewEncoder(w).Encode(http.StatusOK)
 		}
 
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusOK)
-
-		// encode the response for JSON on the frontened
-		json.NewEncoder(w).Encode(http.StatusOK)
 	}
 }
 
@@ -93,7 +95,7 @@ func enableCors(w *http.ResponseWriter) {
 	(*w).Header().Set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
 }
 
-// Define your Error struct
+// MyError is used to Define your Error struct
 type MyError struct {
 	msg string
 }

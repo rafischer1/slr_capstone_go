@@ -50,7 +50,7 @@ func main() {
 	r.HandleFunc("/subscribe/{phone}", h.DeleteSub).Methods("DELETE", "OPTIONS")
 
 	// serve static files
-	r.Handle("/", http.FileServer(http.Dir("static/")))
+	r.Handle("/", http.FileServer(http.Dir("public/")))
 
 	// set router
 	log.Println("Listening...$1", os.Getenv("PORT"))

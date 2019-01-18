@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="shortcut icon" href="./wave.ico" />
+  <link rel="stylesheet" href="./css/style.css">
+  <title>SLR Maine Backend</title>
+  <style>
+
+ body {
+  background-color: rgba(218, 157, 99, 0.13);
+  color: rgb(0, 0, 0);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.login-sec {
+  padding: 2%; 
+  position:relative;
+}
+
+
+.login-sec .copy-text{position:absolute; width:80%; bottom:20px; font-size:13px; text-align:center;}
+.login-sec .copy-text i{color:rgb(138, 190, 254);}
+.login-sec .copy-text a{color:rgb(33, 97, 122);}
+.login-sec h2{margin-bottom:30px; font-weight:800; font-size:30px; color: #DE6262;}
+.login-sec h2:after{content:" "; width:200px; height:5px; background:#FEB58A; display:block; margin-top:20px; border-radius:3px; }
+
+.btn-login {
+  border-radius: 10px;
+  margin-left: 1%;
+  background: rgb(98, 177, 222); 
+  color:#fff; font-weight:600;
+}
+
+.signup {
+  width: 90%;
+  margin-top: 1%;
+}
+
+ .banner-sec{
+   background: url(https://images.unsplash.com/photo-1505359482669-89daa5cb5617?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)  no-repeat left; background-size:cover; 
+  min-height:300px; 
+  border-radius: 10px; 
+  padding:0;
+}
+
+a {
+  color: rgb(33, 97, 122);
+  font-size: 20px;
+  margin: 5%;
+}
+</style>
+</head>
+
+<body>
+  <a href="/" target="_blank">Link to SLR Maine Site</a>
+  <div class="container signup">
+    <section class="login-block">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 login-sec">
+            <h2 class="text-center">
+              Backend API for SLR Maine Project <hr/><br />
+              Sign Up For Sea Level Rise/Flooding Notifications
+            </h2>
+            
+            <form class="login-form" >
+              <div class="form-group row">
+                <span class="input-field col s12">
+                  <i class="material-icons prefix">phone</i>
+                  <br />
+                  <input id="phone" type="tel" pattern="[0-9]{10}" class="validate" placeholder="207-555-5555" required />
+                  <label htmlFor="icon_phone" />
+                </span>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <select s={12} id="location" type="select" label="Select Location:" defaultValue="1">
+                  <option value="1">Portland</option>
+                  <option value="2">South Portland</option>
+                  <option value="3">Cape Elizabeth</option>
+                  <option value="4">Falmouth</option>
+                  <option value="4">Westbrook</option>
+                  <option value="5">Other</option>
+                  </select>
+              </div>
+              </div>
+              <br />
+              <br />
+              <button type="submit" class="btn btn-login float-right">
+                Sign Up
+              </button>
+            </form>
+  
+          </div>
+          <div class="col-md-8 banner-sec" />
+        </div>
+      </div>
+    </section>
+   
+  </div>
+</body>
+
+</html>
