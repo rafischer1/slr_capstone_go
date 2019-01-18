@@ -2,7 +2,7 @@
 
 ## SMS messaging service
 
-> When a flooding event is *triggered* a POST is made to the database to record the event and the information from the same POT is used to autogenerate a SMS message to all the Subscribers in the database
+> When a flooding event is *triggered* a POST is made to the database to record the event and the information from the same POST is used to autogenerate a SMS message to all the Subscribers in the database 🚏
 
 ## Routes
 
