@@ -53,6 +53,9 @@ func main() {
 	r.HandleFunc("/data", h.GetAllData).Methods("GET")
 	r.HandleFunc("/data", h.PostData).Methods("POST", "OPTIONS")
 
+	// admin routing
+	r.HandleFunc("/admin/{password}", h.AdminVerify).Methods("GET")
+
 	// serve static files
 	r.Handle("/", http.FileServer(http.Dir("public/")))
 
