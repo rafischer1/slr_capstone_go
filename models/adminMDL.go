@@ -16,7 +16,7 @@ type Admin struct {
 }
 
 // GetAdmin varifies admin by matching password
-func GetAdmin(password string) string {
+func GetAdmin(password string) (string, error) {
 	fmt.Println("In the get admin model", password)
 
 	db, err := sql.Open("postgres", d.ConnStr)
@@ -29,10 +29,8 @@ func GetAdmin(password string) string {
 	defer row.Close()
 	var entry []Admin
 	var user string
-
 	for row.Next() {
 		admin := Admin{}
-		// gotta get all the fields!
 		row.Scan(&admin.Username)
 		entry = append(entry, admin)
 		user = admin.Username
@@ -43,5 +41,5 @@ func GetAdmin(password string) string {
 		log.Fatal(err)
 	}
 
-	return user
+	return user, err
 }

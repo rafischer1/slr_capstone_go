@@ -6,6 +6,11 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <link rel="shortcut icon" href="./wave.ico" />
   <link rel="stylesheet" href="./css/style.css">
   <title>SLR Maine Backend</title>
@@ -15,9 +20,11 @@
   background-color: rgba(218, 157, 99, 0.13);
   color: rgb(0, 0, 0);
   font-family: 'Montserrat', sans-serif;
+  text-align: center;
 }
 
 .login-sec {
+  text-align: left;
   padding: 2%; 
   position:relative;
 }
@@ -51,16 +58,29 @@
 a {
   color: rgb(33, 97, 122);
   font-size: 20px;
-  margin: 5%;
+  margin-top: 300px;
+  padding: 2%;
+  border-radius: 10px;
+  border: 2px solid rgb(33, 97, 122);
+}
+
+a:hover {
+  color: rgb(46, 33, 122);
+   border: 2px solid rgb(46, 33, 122);
+   background-color:rgba(240, 248, 255, 0.198);
 }
 </style>
 </head>
 
 <body>
-  <a href="/" target="_blank">Link to SLR Maine Site</a>
+  
   <div class="container signup">
+    <div class="row">
+      <a href="/" target="_blank">Link to SLR Maine Site</a>
+    </div>
+    
     <section class="login-block">
-      <div class="container">
+      <div class="container left">
         <div class="row">
           <div class="col-md-4 login-sec">
             <h2 class="text-center">
@@ -71,7 +91,7 @@ a {
             <form class="login-form" >
               <div class="form-group row">
                 <span class="input-field col s12">
-                  <i class="material-icons prefix">phone</i>
+                  <i class="material-icons prefix"></i>
                   <br />
                   <input id="phone" type="tel" pattern="[0-9]{10}" class="validate" placeholder="207-555-5555" required />
                   <label htmlFor="icon_phone" />

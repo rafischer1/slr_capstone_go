@@ -14,16 +14,23 @@ func AdminVerify(w http.ResponseWriter, req *http.Request) {
 	enableCors(&w)
 	reqPass := req.URL.String()
 	password := strings.Split(reqPass, "/")[2]
-	user := m.GetAdmin(password)
+	user, err := m.GetAdmin(password)
 	json.Marshal(user)
 
 	//return the user
 	w.WriteHeader(http.StatusOK)
-	fmt.Println("Hit the getAll messages route:", http.StatusOK)
+	fmt.Println("Hit the admin verify route:", http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
 	resUser, err := json.Marshal(user)
-	if err != nil {
-		panic(err)
+
+	fmt.Println(len(user), "len user", resUser)
+	if len(user) == 0 {
+		json.NewEncoder(w).Encode(http.StatusBadRequest)
+	} else if err != nil {
+		json.NewEncoder(w).Encode(http.StatusBadRequest)
+	} else {
+		// w.Write(resUser)
+		json.NewEncoder(w).Encode(http.StatusOK)
 	}
-	w.Write(resUser)
+
 }

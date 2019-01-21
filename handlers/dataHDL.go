@@ -63,7 +63,7 @@ func PostData(w http.ResponseWriter, req *http.Request) {
 			w.WriteHeader(http.StatusOK)
 
 			// encode the response for JSON on the frontened
-			json.NewEncoder(w).Encode(http.StatusOK)
+			json.NewEncoder(w).Encode(err)
 
 		}
 	}
