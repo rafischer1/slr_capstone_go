@@ -25,7 +25,6 @@ func GetAllSubs(w http.ResponseWriter, req *http.Request) {
 
 	//return the data
 	w.WriteHeader(http.StatusOK)
-	fmt.Println("Hit the getAll messages route:", http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
 	resData, err := json.Marshal(data)
 	if err != nil {
@@ -79,10 +78,10 @@ func DeleteSub(w http.ResponseWriter, req *http.Request) {
 	reqPhone := req.URL.String()
 	phone := strings.Split(reqPhone, "/")[2]
 	res, err := m.DeleteSub(phone)
+	fmt.Printf("%T", res)
 	if err != nil {
 		json.NewEncoder(w).Encode(err)
 	}
-	fmt.Println(res)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(http.StatusOK)

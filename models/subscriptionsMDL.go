@@ -22,8 +22,6 @@ func GetAllSubs() []Subscriber {
 		panic(err)
 	}
 
-	fmt.Println("in the get all sub db:", db)
-
 	defer db.Close()
 	rows, err := db.Query("SELECT * FROM subscribers")
 

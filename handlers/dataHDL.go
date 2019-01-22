@@ -14,12 +14,12 @@ import (
 // GetAllData handler to handle all recorded flooding events
 func GetAllData(w http.ResponseWriter, req *http.Request) {
 	enableCors(&w)
-	// fmt.Println("in the getall handler", req)
+
+	// retrieve data from the get all model
 	data := m.GetAllData()
 
 	//return the data
 	w.WriteHeader(http.StatusOK)
-	fmt.Println("Hit the getAll messages route:", http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
 	resData, err := json.Marshal(data)
 	if err != nil {
@@ -35,8 +35,6 @@ func PostData(w http.ResponseWriter, req *http.Request) {
 		fmt.Println("Options in data POST:", req.Method)
 	}
 	if req.Method == "POST" {
-		fmt.Println("header in data POST req:", &w)
-
 		if req.Body != nil {
 			bodyBytes, _ = ioutil.ReadAll(req.Body)
 		}

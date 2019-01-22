@@ -83,9 +83,6 @@ func initDb() {
 		config[dbhost], config[dbport],
 		config[dbuser], config[dbpass], config[dbname])
 
-	// print out database information for development
-	// fmt.Println("db init info:", psqlInfo)
-
 	// open and run the db
 	db, err = sql.Open("postgres", psqlInfo)
 	if err != nil {
@@ -101,17 +98,14 @@ func initDb() {
 func dbConfig() map[string]string {
 	conf := make(map[string]string)
 	host, ok := os.LookupEnv(dbhost)
-	// fmt.Println("host:", host)
 	if !ok {
 		panic("DBHOST environment variable required but not set")
 	}
 	port, ok := os.LookupEnv(dbport)
-	// fmt.Println("port:", port)
 	if !ok {
 		panic("DBPORT environment variable required but not set")
 	}
 	user, ok := os.LookupEnv(dbuser)
-	// fmt.Println("user:", user)
 	if !ok {
 		panic("DBUSER environment variable required but not set")
 	}
@@ -120,7 +114,6 @@ func dbConfig() map[string]string {
 		panic("DBPASS environment variable required but not set")
 	}
 	name, ok := os.LookupEnv(dbname)
-	// fmt.Println("dbname:", name)
 	if !ok {
 		panic("DBNAME environment variable required but not set")
 	}

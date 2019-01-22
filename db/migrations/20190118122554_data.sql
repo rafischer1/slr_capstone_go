@@ -15,3 +15,5 @@ ALTER SEQUENCE data_id_seq RESTART WITH 1;
 DROP TABLE data;
 
 psql capstonedb
+
+heroku psql
