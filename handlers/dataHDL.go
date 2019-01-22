@@ -31,6 +31,7 @@ func GetAllData(w http.ResponseWriter, req *http.Request) {
 
 // PostData recieves data from a POST to /data w/ SMS message info
 func PostData(w http.ResponseWriter, req *http.Request) {
+	enableCors(&w)
 	if req.Method == "OPTIONS" {
 		fmt.Println("Options in data POST:", req.Method)
 	}

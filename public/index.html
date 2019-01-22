@@ -11,15 +11,60 @@
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <link rel="shortcut icon" href="./wave.ico" />
-  <link rel="stylesheet" href="./css/style.css">
   <title>SLR Maine Backend</title>
   <style>
 
  body {
-  background-color: rgba(218, 157, 99, 0.13);
   color: rgb(0, 0, 0);
   font-family: 'Montserrat', sans-serif;
   text-align: center;
+}
+
+
+/* The sidebar menu */
+.sidenav {
+  text-align: left;
+  margin-left: 190px;
+  height: 100%; 
+  width: 180px; 
+  position: fixed; 
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(225, 225, 225); 
+  overflow-x: hidden; 
+  padding-top: 20px;
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav > a > img:hover {
+  background-color:rgba(250, 250, 250, 0.31);
+  padding: 1%;
+  border-radius: 10px;
+}
+
+/* Style page content */
+.main {
+  margin-left: 180px; 
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
 }
 
 .login-sec {
@@ -29,11 +74,11 @@
 }
 
 
-.login-sec .copy-text{position:absolute; width:80%; bottom:20px; font-size:13px; text-align:center;}
+.login-sec .copy-text{position:absolute; width:80%;  font-size:13px; text-align:center;}
 .login-sec .copy-text i{color:rgb(138, 190, 254);}
 .login-sec .copy-text a{color:rgb(33, 97, 122);}
-.login-sec h2{margin-bottom:30px; font-weight:800; font-size:30px; color: #DE6262;}
-.login-sec h2:after{content:" "; width:200px; height:5px; background:#FEB58A; display:block; margin-top:20px; border-radius:3px; }
+.login-sec h2{margin-bottom:15px; font-weight:800; font-size:30px; color: #DE6262;}
+.login-sec h2:after{content:" "; width:200px; height:5px; background:#FEB58A; display:block; margin-top:15px; border-radius:3px; }
 
 .btn-login {
   border-radius: 10px;
@@ -53,28 +98,27 @@
   border-radius: 10px; 
   padding:0;
 }
-
-a {
-  color: rgb(33, 97, 122);
-  font-size: 20px;
-  margin-top: 300px;
-  padding: 2%;
-  border-radius: 10px;
-  border: 2px solid rgb(33, 97, 122);
-}
-
-a:hover {
-  color: rgb(46, 33, 122);
-   border: 2px solid rgb(46, 33, 122);
-   background-color:rgba(240, 248, 255, 0.198);
-}
 </style>
 </head>
 <body>
-  <div class="container signup">
-    <div class="row">
-      <a href="/" target="_blank">Link to SLR Maine Site</a>
-    </div>
+  <!-- Side navigation -->
+  <div class="sidenav">
+    <a to="/" target="_blank">Link to SLR Maine</a>
+    <a href="#">Services</a>
+    <a href="#">Contact</a>
+    <a href="https://gmri.org" target="_blank"><img id="logo" src="https://www.gmri.org/sites/default/files/logo_0.png" height="60" alt="" /></a>
+
+      <a href="https://www.portlandmaine.gov/2366/Stay-Connected" target="_blank">
+       <img src="https://static1.squarespace.com/static/5a75f43a692ebeeb1159413d/t/5adf368f2b6a28995d5d1539/1524577943240/Seal.Navy.png"
+           width="75" alt="" />
+      </a>
+   
+    
+  </div>
+  
+
+  <div class="container signup main">
+   
     <section class="login-block">
       <div class="container left">
         <div class="row">
