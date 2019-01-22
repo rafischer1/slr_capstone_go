@@ -45,7 +45,7 @@ func GetAllData() []Datum {
 	return events
 }
 
-// PostData will hopefully be the big payoff for trying out the SMS service
+// PostData records an instance of a flooding event taking multiple parameters
 func PostData(Msg string, WindMPH float64, WindDir string, SeaLevelFt float64) error {
 	db, err := sql.Open("postgres", d.ConnStr)
 	if err != nil {

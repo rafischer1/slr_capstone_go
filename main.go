@@ -11,7 +11,6 @@ import (
 
 	"github.com/gorilla/mux"
 	_ "github.com/lib/pq"
-	"github.com/pressly/goose"
 	"github.com/subosito/gotenv"
 
 	h "github.com/rafischer1/slr_capstone_go/handlers"
@@ -31,7 +30,7 @@ const (
 
 func main() {
 	initDb()
-	goose.AddMigration(Up, Down)
+
 	defer db.Close()
 	// port := GetPort()
 	r := mux.NewRouter()
@@ -132,22 +131,4 @@ func dbConfig() map[string]string {
 	conf[dbname] = name
 
 	return conf
-}
-
-// Up = goose Up
-func Up(tx *sql.Tx) error {
-	_, err := tx.Exec("CREATE TABLE messages (id SERIAL PRIMARY KEY, read boolean, starred boolean, selected boolean, subject text, body text,labels text);")
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-// Down = goose Down
-func Down(tx *sql.Tx) error {
-	_, err := tx.Exec("DROP TABLE messages;")
-	if err != nil {
-		return err
-	}
-	return nil
 }

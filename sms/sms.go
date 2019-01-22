@@ -19,7 +19,7 @@ import (
 
 // if there is a POST to the /data route the handler could trigger first a GetAll call to the subscribers table and pass that []string of numbers as one of two parameters to the SendText(numbers, msg) => return twillio http.statust
 
-// SendText will hopefully work someday
+// SendText formats and passes the flooding event message to the Twillio api
 func SendText(Msg string) {
 	accountSid, authToken, numberFrom := Init()
 
@@ -56,7 +56,7 @@ func SendText(Msg string) {
 	}
 }
 
-// Init initializes the SMS env variables
+// Init initializes the SMS/Twillio env variables
 func Init() (string, string, string) {
 	accountSid := os.Getenv("SMS_SID")
 	authToken := os.Getenv("SMS_TOKEN")

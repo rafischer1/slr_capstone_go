@@ -14,8 +14,9 @@ func AdminVerify(w http.ResponseWriter, req *http.Request) {
 	enableCors(&w)
 	reqPass := req.URL.String()
 	password := strings.Split(reqPass, "/")[2]
+
+	// send password as param to the get admin SQL query result
 	user, err := m.GetAdmin(password)
-	json.Marshal(user)
 
 	//return the user
 	w.WriteHeader(http.StatusOK)
@@ -27,10 +28,9 @@ func AdminVerify(w http.ResponseWriter, req *http.Request) {
 	if len(user) == 0 {
 		json.NewEncoder(w).Encode(http.StatusBadRequest)
 	} else if err != nil {
-		json.NewEncoder(w).Encode(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(http.StatusNetworkAuthenticationRequired)
 	} else {
 		// w.Write(resUser)
 		json.NewEncoder(w).Encode(http.StatusOK)
 	}
-
 }

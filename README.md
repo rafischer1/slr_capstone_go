@@ -16,9 +16,7 @@ DATA TABLE
 /data/GETALL
 
 ADMINS TABLE
-/admins
-/admins/{admin_id}/
-/admins/{admin_id}/delete/
+/admins/{password}/ => verifies password/username of Admin
 ```
 
 ```js

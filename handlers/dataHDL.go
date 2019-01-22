@@ -11,7 +11,7 @@ import (
 	"github.com/rafischer1/slr_capstone_go/sms"
 )
 
-// GetAllSubs handler to handle all records
+// GetAllData handler to handle all recorded flooding events
 func GetAllData(w http.ResponseWriter, req *http.Request) {
 	enableCors(&w)
 	// fmt.Println("in the getall handler", req)
@@ -48,20 +48,20 @@ func PostData(w http.ResponseWriter, req *http.Request) {
 		str := bodyString
 		res := m.Datum{}
 		json.Unmarshal([]byte(str), &res)
-		fmt.Println("the whole dang res:", res)
 
 		fmt.Println("res data:", res.Msg, "res windmph:", res.WindMPH, "res winddir:", res.WindDir, "Sea level ft:", res.SeaLevelFt)
 
+		// send the message on to the Send Text handler for processing
 		defer sms.SendText(res.Msg)
+
+		// post the flooding event data to the database
 		err := m.PostData(res.Msg, res.WindMPH, res.WindDir, res.SeaLevelFt)
 		if err != nil {
 			//send the error as JSON
 			json.NewEncoder(w).Encode(err)
 		} else {
-
 			w.Header().Set("Content-Type", "application/json")
 			w.WriteHeader(http.StatusOK)
-
 			// encode the response for JSON on the frontened
 			json.NewEncoder(w).Encode(err)
 
