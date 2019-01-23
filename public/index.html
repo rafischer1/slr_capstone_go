@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <link rel="shortcut icon" href="./wave.ico" />
-  <title>SLR Maine Backend</title>
+  <title>SLR Maine Api</title>
 
   <style>
  body {
@@ -19,23 +19,24 @@
 
 .sidenav {
   text-align: left;
-  margin-left: 190px;
+  margin-left: 195px;
   height: 100%; 
-  width: 180px; 
+  width: 190px; 
   position: fixed; 
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: rgb(225, 225, 225); 
+  background-color: rgb(181, 218, 222); 
   overflow-x: hidden; 
   padding-top: 20px;
+  box-shadow: 2px 2px 2px rgb(88, 160, 149);
 }
 
 .sidenav a {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  color: #452929;
   display: block;
   cursor: pointer;
 }
@@ -51,13 +52,13 @@
 }
 
 .main {
-  margin-left: 180px; 
-  padding: 0px 10px;
+  margin-left: 190px; 
+  padding: 0px 5px;
 }
 
 .login-sec {
   text-align: left;
-  padding: 2%; 
+  padding: 1%; 
   position:relative;
 }
 
@@ -81,7 +82,6 @@
 }
 
 .login-sec h2 {
-  margin-bottom:15px; 
   font-weight:800; 
   font-size:30px; 
   color: #DE6262;
@@ -90,18 +90,10 @@
 .login-sec h2:after {
   content:" "; 
   width:200px; 
-  height:5px; 
   background:#FEB58A; 
   display:block; 
   margin-top:15px; 
   border-radius:3px; 
-}
-
-.btn-login {
-  border-radius: 10px;
-  margin-left: 1%;
-  background: rgb(98, 177, 222); 
-  color:#fff; font-weight:600;
 }
 
 .signup {
@@ -138,8 +130,7 @@ tr:hover {
   <!-- Side navigation -->
   <div class="sidenav">
     <a to="/" target="_blank">Link to SLR Maine</a>
-    <a href="#">Services</a>
-    <a href="#">Contact</a>
+    <a href="mailto: artiefischer@gmail.com">Contact</a>
     <a href="https://gmri.org" target="_blank"><img id="logo" src="https://www.gmri.org/sites/default/files/logo_0.png" height="60" alt="" /></a>
 
       <a href="https://www.portlandmaine.gov/2366/Stay-Connected" target="_blank">
@@ -178,7 +169,7 @@ tr:hover {
               </tr>
               <tr>
                 <td class="lang">React</td>
-                <td>Frontend framework with interactive parallax UI and router</td>
+                <td>Frontend framework with interactive parallax UI and react-router</td>
               </tr>
               </table>
             </h6>
