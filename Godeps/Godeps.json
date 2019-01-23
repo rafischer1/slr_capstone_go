@@ -1,0 +1,27 @@
+{
+	"ImportPath": "github.com/rafischer1/slr_capstone_go",
+	"GoVersion": "go1.11",
+	"GodepVersion": "v80",
+	"Deps": [
+		{
+			"ImportPath": "github.com/gorilla/mux",
+			"Comment": "v1.6.2-12-g3d80bc8",
+			"Rev": "3d80bc801bb034e17cae38591335b3b1110f1c47"
+		},
+		{
+			"ImportPath": "github.com/lib/pq",
+			"Comment": "v1.0.0-6-g9eb73ef",
+			"Rev": "9eb73efc1fcc404148b56765b0d3f61d9a5ef8ee"
+		},
+		{
+			"ImportPath": "github.com/lib/pq/oid",
+			"Comment": "v1.0.0-6-g9eb73ef",
+			"Rev": "9eb73efc1fcc404148b56765b0d3f61d9a5ef8ee"
+		},
+		{
+			"ImportPath": "github.com/subosito/gotenv",
+			"Comment": "v1.1.1",
+			"Rev": "69b5b6104433beb2cb9c3ce00bdadf3c7c2d3f34"
+		}
+	]
+}
