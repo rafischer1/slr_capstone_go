@@ -1,4 +1,6 @@
-# Prototype F.A.S. Go Backend for GMRI / City of Portland 🌊
+# Prototype SLR/Coastal Flooding Go Backend for GMRI / City of Portland 🌊
+
+[Deployed Backend on Heroku](https://slr-maine.herokuapp.com/)
 
 ## SMS messaging service
 
