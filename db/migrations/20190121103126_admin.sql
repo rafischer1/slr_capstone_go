@@ -1,4 +1,3 @@
--- +goose Up
 CREATE TABLE admin
 (
   id SERIAL NOT NULL PRIMARY KEY,
@@ -11,7 +10,6 @@ INSERT INTO admin
 VALUES
   (1, 'gmri', 'slrmaine');
 
--- +goose Down
 DROP TABLE admin;
 
-psql capstonedb
+-- dev: psql capstonedb

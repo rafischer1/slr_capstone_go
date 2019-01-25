@@ -1,4 +1,3 @@
--- +goose Up
 CREATE TABLE data
 (
   id SERIAL NOT NULL PRIMARY KEY,
@@ -11,9 +10,6 @@ CREATE TABLE data
 
 ALTER SEQUENCE data_id_seq RESTART WITH 1;
 
--- +goose Down
 DROP TABLE data;
 
-psql capstonedb
-
-heroku psql
+-- dev: psql capstonedb

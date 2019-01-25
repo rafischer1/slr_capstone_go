@@ -1,3 +1,11 @@
+/**
+* An Event happens from the front end there is a new message to be sent.
+* It hits a route that triggers a database call to retrieve a list of numbers.
+* The message content makes it to the request call in the correct format
+* A for loop calls the sms function for every number in the db
+* general hilarity ensues 🌊
+ */
+
 package sms
 
 import (
@@ -8,14 +16,6 @@ import (
 	"os"
 	"strings"
 )
-
-/**
-* An Event happens from the front end there is a new message to be sent.
-* It hits a route that triggers a database call to retrieve a list of numbers.
-* The message content makes it to the request call in the correct format
-* A for loop calls the sms function for every number in the db
-* general hilarity ensues 🌊
- */
 
 // if there is a POST to the /data route the handler could trigger first a GetAll call to the subscribers table and pass that []string of numbers as one of two parameters to the SendText(numbers, msg) => return twillio http.statust
 

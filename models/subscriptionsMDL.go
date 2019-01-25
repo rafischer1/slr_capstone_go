@@ -2,7 +2,6 @@ package models
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 
 	d "github.com/rafischer1/slr_capstone_go/db"
@@ -63,10 +62,8 @@ func PostSub(Phone string, Location string) error {
 	return errTwo
 }
 
-// DeleteSub Model function
+// DeleteSub Model function delete a phone number from the db
 func DeleteSub(phone string) (string, error) {
-	fmt.Println("In the delete model", phone)
-
 	db, err := sql.Open("postgres", d.ConnStr)
 	if err != nil {
 		panic(err)

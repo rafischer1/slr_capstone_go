@@ -11,6 +11,7 @@ import (
 	m "github.com/rafischer1/slr_capstone_go/models"
 )
 
+// Reader type interface
 type Reader interface {
 	Read(buf []byte) (n int, err error)
 }
@@ -72,7 +73,7 @@ func PostSub(w http.ResponseWriter, req *http.Request) {
 	}
 }
 
-// DeleteSub sends the delete request to the db
+// DeleteSub sends the delete request to the Delete model
 func DeleteSub(w http.ResponseWriter, req *http.Request) {
 	enableCors(&w)
 	reqPhone := req.URL.String()
@@ -93,7 +94,7 @@ func enableCors(w *http.ResponseWriter) {
 	(*w).Header().Set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
 }
 
-// MyError is used to Define your Error struct
+// MyError is used to Define Error struct
 type MyError struct {
 	msg string
 }

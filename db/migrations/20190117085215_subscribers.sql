@@ -1,4 +1,3 @@
--- +goose Up
 CREATE TABLE subscribers
 (
   id SERIAL NOT NULL PRIMARY KEY,
@@ -8,5 +7,4 @@ CREATE TABLE subscribers
 
 ALTER TABLE subscribers ADD UNIQUE (phone);
 
--- +goose Down
 DROP TABLE subscribers;
