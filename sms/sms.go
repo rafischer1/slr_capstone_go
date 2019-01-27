@@ -15,6 +15,8 @@ import (
 	"net/url"
 	"os"
 	"strings"
+
+	m "github.com/rafischer1/slr_capstone_go/models"
 )
 
 // if there is a POST to the /data route the handler could trigger first a GetAll call to the subscribers table and pass that []string of numbers as one of two parameters to the SendText(numbers, msg) => return twillio http.statust
@@ -22,6 +24,11 @@ import (
 // SendText formats and passes the flooding event message to the Twillio api
 func SendText(Msg string) {
 	accountSid, authToken, numberFrom := Init()
+
+	subscriptions := m.GetAllSubs()
+	for i, sub := range subscriptions {
+		fmt.Printf("SMS to Number**%v = %v\n", i, sub.Phone)
+	}
 
 	urlStr := "https://api.twilio.com/2010-04-01/Accounts/" + accountSid + "/Messages.json"
 
