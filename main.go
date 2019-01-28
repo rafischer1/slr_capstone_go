@@ -59,7 +59,7 @@ func main() {
 	r.Handle("/", http.FileServer(http.Dir("public/")))
 
 	// set router
-	log.Println("Listening...$1", os.Getenv("PORT"))
+	log.Println("Listening...", os.Getenv("PORT"))
 	http.ListenAndServe(":"+os.Getenv("PORT"), r)
 
 	log.Println("Shutting down server...")

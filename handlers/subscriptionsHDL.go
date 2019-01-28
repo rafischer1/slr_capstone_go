@@ -78,8 +78,8 @@ func DeleteSub(w http.ResponseWriter, req *http.Request) {
 	enableCors(&w)
 	reqPhone := req.URL.String()
 	phone := strings.Split(reqPhone, "/")[2]
-	res, err := m.DeleteSub(phone)
-	fmt.Printf("%T", res)
+	_, err := m.DeleteSub(phone)
+	// fmt.Printf("%T", res)
 	if err != nil {
 		json.NewEncoder(w).Encode(err)
 	}

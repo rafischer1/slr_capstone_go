@@ -22,9 +22,9 @@ func AdminVerify(w http.ResponseWriter, req *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	fmt.Println("Hit the admin verify route:", http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
-	resUser, err := json.Marshal(user)
+	// resUser, err := json.Marshal(user)
 
-	fmt.Println(len(user), "len user", resUser)
+	// fmt.Println(len(user), "len user", resUser)
 	if len(user) == 0 {
 		json.NewEncoder(w).Encode(http.StatusBadRequest)
 	} else if err != nil {
