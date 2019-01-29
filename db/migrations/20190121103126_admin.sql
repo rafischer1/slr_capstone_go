@@ -9,7 +9,7 @@ INSERT INTO admin
   (id, username, password)
 VALUES
   (1, 'gmri', 'slrmaine');
-
+  
 DROP TABLE admin;
 
 -- dev: psql capstonedb

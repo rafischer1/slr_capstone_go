@@ -26,3 +26,5 @@ go run *
 
 go build
 ```
+
+![image](./git-static/tide_screenshot.png)
