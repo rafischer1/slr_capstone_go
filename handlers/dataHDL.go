@@ -42,19 +42,20 @@ func PostData(w http.ResponseWriter, req *http.Request) {
 
 		// Restore the io.ReadCloser to its original state
 		req.Body = ioutil.NopCloser(bytes.NewBuffer(bodyBytes))
+
 		// Use the content
 		bodyString := string(bodyBytes)
 		str := bodyString
 		res := m.Datum{}
 		json.Unmarshal([]byte(str), &res)
 
-		fmt.Println("res data:", res.Msg, "res windmph:", res.WindMPH, "res winddir:", res.WindDir, "Sea level ft:", res.SeaLevelFt)
+		fmt.Println("res data:", res.Msg, "res windmph:", res.WindMPH, "res winddir:", res.WindDir, "Sea level ft:", res.SeaLevelFt, "Category:", res.Category)
 
 		// send the message on to the Send Text handler for processing
 		defer sms.SendText(res.Msg)
 
 		// post the flooding event data to the database
-		err := m.PostData(res.Msg, res.WindMPH, res.WindDir, res.SeaLevelFt)
+		err := m.PostData(res.Msg, res.WindMPH, res.WindDir, res.SeaLevelFt, res.Category)
 		if err != nil {
 			//send the error as JSON
 			json.NewEncoder(w).Encode(err)
@@ -63,7 +64,6 @@ func PostData(w http.ResponseWriter, req *http.Request) {
 			w.WriteHeader(http.StatusOK)
 			// encode the response for JSON on the frontened
 			json.NewEncoder(w).Encode(err)
-
 		}
 	}
 }

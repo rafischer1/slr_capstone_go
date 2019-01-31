@@ -5,6 +5,7 @@ CREATE TABLE data
   windmph REAL,
   winddir VARCHAR,
   sealevelft REAL,
+  category VARCHAR,
   createdat timestamp default current_timestamp
 );
 

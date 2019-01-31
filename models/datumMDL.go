@@ -14,6 +14,7 @@ type Datum struct {
 	WindMPH    float64 `json:"windmph"`
 	WindDir    string  `json:"winddir"`
 	SeaLevelFt float64 `json:"sealevelft"`
+	Category   string  `json:"category"`
 	CreatedAt  string  `json:"createdat"`
 }
 
@@ -35,7 +36,7 @@ func GetAllData() []Datum {
 		event := Datum{}
 
 		// gotta get all the fields!
-		rows.Scan(&event.ID, &event.Msg, &event.WindMPH, &event.WindDir, &event.SeaLevelFt, &event.CreatedAt)
+		rows.Scan(&event.ID, &event.Msg, &event.WindMPH, &event.WindDir, &event.SeaLevelFt, &event.Category, &event.CreatedAt)
 		events = append(events, event)
 	}
 
@@ -46,7 +47,7 @@ func GetAllData() []Datum {
 }
 
 // PostData records an instance of a flooding event taking multiple parameters
-func PostData(Msg string, WindMPH float64, WindDir string, SeaLevelFt float64) error {
+func PostData(Msg string, WindMPH float64, WindDir string, SeaLevelFt float64, Category string) error {
 	db, err := sql.Open("postgres", d.ConnStr)
 	if err != nil {
 		panic(err)
@@ -57,7 +58,7 @@ func PostData(Msg string, WindMPH float64, WindDir string, SeaLevelFt float64) e
 	var entry []Datum
 
 	//Create
-	errTwo := db.QueryRow(`INSERT INTO data(msg, windmph, winddir, sealevelft) VALUES($1, $2, $3, $4) RETURNING *`, Msg, WindMPH, WindDir, SeaLevelFt).Scan(&event.ID, &event.Msg, &event.WindMPH, &event.WindDir, &event.SeaLevelFt, &event.CreatedAt)
+	errTwo := db.QueryRow(`INSERT INTO data(msg, windmph, winddir, sealevelft, category) VALUES($1, $2, $3, $4, $5) RETURNING *`, Msg, WindMPH, WindDir, SeaLevelFt, Category).Scan(&event.ID, &event.Msg, &event.WindMPH, &event.WindDir, &event.SeaLevelFt, &event.Category, &event.CreatedAt)
 	entry = append(entry, event)
 	if errTwo != nil {
 		return errTwo
