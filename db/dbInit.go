@@ -1,7 +1,6 @@
 package db
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/subosito/gotenv"
@@ -24,7 +23,7 @@ var ConnStr = Init()
 
 // FOR PRODUCTION BUILD ONLY!!!!
 
-Init initializes the database using .env vars
+// Init initializes the database using .env vars
 func Init() string {
 	gotenv.Load()
 	url := os.Getenv("DATABASE_URL")
