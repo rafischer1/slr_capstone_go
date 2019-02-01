@@ -24,6 +24,7 @@ var ConnStr = Init()
 // FOR PRODUCTION BUILD ONLY!!!!
 
 // Init initializes the database using .env vars
+
 func Init() string {
 	gotenv.Load()
 	url := os.Getenv("DATABASE_URL")

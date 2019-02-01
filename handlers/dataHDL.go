@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strconv"
+	"strings"
 
 	m "github.com/rafischer1/slr_capstone_go/models"
 	"github.com/rafischer1/slr_capstone_go/sms"
@@ -66,4 +68,21 @@ func PostData(w http.ResponseWriter, req *http.Request) {
 			json.NewEncoder(w).Encode(err)
 		}
 	}
+}
+
+// DeleteData sends the delete request to the Delete model
+func DeleteData(w http.ResponseWriter, req *http.Request) {
+	enableCors(&w)
+	fmt.Println("Delete data hit", req.Method)
+	reqID := req.URL.String()
+	id := strings.Split(reqID, "/")[2]
+	t, _ := strconv.Atoi(id)
+	_, err := m.DeleteDatum(t)
+	fmt.Printf("%T", id)
+	if err != nil {
+		json.NewEncoder(w).Encode(err)
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(http.StatusOK)
 }

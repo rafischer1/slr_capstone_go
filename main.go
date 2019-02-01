@@ -51,6 +51,7 @@ func main() {
 	// data routing
 	r.HandleFunc("/data", h.GetAllData).Methods("GET")
 	r.HandleFunc("/data", h.PostData).Methods("POST", "OPTIONS")
+	r.HandleFunc("/data/{id}", h.DeleteData).Methods("DELETE", "OPTIONS")
 
 	// admin routing
 	r.HandleFunc("/admin/{password}", h.AdminVerify).Methods("GET")

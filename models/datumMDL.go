@@ -2,6 +2,7 @@ package models
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 
 	d "github.com/rafischer1/slr_capstone_go/db"
@@ -65,4 +66,20 @@ func PostData(Msg string, WindMPH float64, WindDir string, SeaLevelFt float64, C
 	}
 
 	return errTwo
+}
+
+// DeleteDatum Model function deletes a flooding event from the db
+func DeleteDatum(id int) (int, error) {
+	fmt.Println("model delete data", id)
+	db, err := sql.Open("postgres", d.ConnStr)
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	row, err := db.Query(`Delete FROM data where phone = $1`, id)
+	if err := row.Err(); err != nil {
+		log.Fatal(err)
+	}
+	defer row.Close()
+	return id, err
 }
