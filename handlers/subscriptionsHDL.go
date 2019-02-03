@@ -62,7 +62,7 @@ func PostSub(w http.ResponseWriter, req *http.Request) {
 			//send the error as JSON
 			json.NewEncoder(w).Encode(err)
 		} else {
-
+			sms.SubscribeSMS(Phone)
 			w.Header().Set("Content-Type", "application/json")
 			w.WriteHeader(http.StatusOK)
 

@@ -63,6 +63,44 @@ func SendText(Msg string) {
 	}
 }
 
+// SubscribeSMS takes a phone number and send a subscription succesfull SMS
+func SubscribeSMS(Phone string) {
+	accountSid, authToken, numberFrom := Init()
+
+	urlStr := "https://api.twilio.com/2010-04-01/Accounts/" + accountSid + "/Messages.json"
+
+	subMsg := Phone + "sucessfully subscribed to SLR Maine. TO unsubscribe at any time please visit the visit the slr-maine site. - - Global sea level has risen by about 8 inches since reliable record keeping began in 1880. Scientists predict sea level will rise between 8 inches and 6.6 feet by 2100."
+
+	msgData := url.Values{}
+
+	msgData.Set("To", "3024232120")
+	msgData.Set("From", numberFrom)
+	msgData.Set("Body", subMsg)
+	msgDataReader := *strings.NewReader(msgData.Encode())
+
+	fmt.Println("msgDataReader:", msgDataReader)
+
+	// request body is formed and sent
+	client := &http.Client{}
+	req, _ := http.NewRequest("POST", urlStr, &msgDataReader)
+	req.SetBasicAuth(accountSid, authToken)
+	req.Header.Add("Accept", "application/json")
+	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+
+	// response is read and evaluated
+	resp, _ := client.Do(req)
+	if resp.StatusCode >= 200 && resp.StatusCode < 300 {
+		var data map[string]interface{}
+		decoder := json.NewDecoder(resp.Body)
+		err := decoder.Decode(&data)
+		if err == nil {
+			fmt.Println(data["sid"])
+		}
+	} else {
+		fmt.Println("response println:", resp, resp.Status)
+	}
+}
+
 // Init initializes the SMS/Twillio env variables
 func Init() (string, string, string) {
 	accountSid := os.Getenv("SMS_SID")
