@@ -69,7 +69,7 @@ func SubscribeSMS(Phone string) {
 
 	urlStr := "https://api.twilio.com/2010-04-01/Accounts/" + accountSid + "/Messages.json"
 
-	subMsg := Phone + "sucessfully subscribed to SLR Maine. TO unsubscribe at any time please visit the visit the slr-maine site. - - Global sea level has risen by about 8 inches since reliable record keeping began in 1880. Scientists predict sea level will rise between 8 inches and 6.6 feet by 2100."
+	subMsg := Phone + " subscribed to SLR Maine. To unsubscribe please visit the visit the slr-maine site. - - 'Because of global warming that has already occurred and warming that is yet to occur due to the uncertain level of future emissions. Sea level rise is a certain impact of climate change; the questions are when, and how much, rather than if' NOAA - 2017"
 
 	msgData := url.Values{}
 
