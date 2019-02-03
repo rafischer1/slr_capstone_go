@@ -69,7 +69,7 @@ func SubscribeSMS(Phone string) {
 
 	urlStr := "https://api.twilio.com/2010-04-01/Accounts/" + accountSid + "/Messages.json"
 
-	subMsg := Phone + " subscribed to SLR Maine. To unsubscribe please visit the visit the slr-maine site. - - 'Because of global warming that has already occurred and warming that is yet to occur...Sea level rise is a certain impact of climate change; the questions are when, and how much, rather than if' NOAA - 2017"
+	subMsg := Phone + " subscribed to SLR Maine. To unsubscribe please visit the slr-maine site. - - 'Because of global warming that has already occurred and warming that is yet to occur...sea level rise is a certain impact of climate change; the questions are When, and How Much, rather than If' NOAA - 2017"
 
 	msgData := url.Values{}
 
