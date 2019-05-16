@@ -76,7 +76,7 @@ func DeleteDatum(id int) (int, error) {
 		panic(err)
 	}
 	defer db.Close()
-	row, err := db.Query(`Delete FROM data where phone = $1`, id)
+	row, err := db.Query(`Delete FROM data where id = $1`, id)
 	if err := row.Err(); err != nil {
 		log.Fatal(err)
 	}
