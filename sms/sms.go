@@ -23,10 +23,11 @@ import (
 
 // SendText formats and passes the flooding event message to the Twillio api
 func SendText(Msg string) {
-	accountSid, authToken, numberFrom := Init()
+	accountSid, authToken, numberFrom, homeNumber := Init()
 
-	subscriptions := m.GetAllSubs()
-	for i, sub := range subscriptions {
+	// SQL get all and range through for alert send
+	subs := m.GetAllSubs()
+	for i, sub := range subs {
 		fmt.Printf("SMS to Number**%v = %v\n", i, sub.Phone)
 	}
 
@@ -35,7 +36,7 @@ func SendText(Msg string) {
 	// how to load all the data needed here?
 	msgData := url.Values{}
 
-	msgData.Set("To", "3024232120")
+	msgData.Set("To", homeNumber)
 	msgData.Set("From", numberFrom)
 	msgData.Set("Body", Msg)
 	msgDataReader := *strings.NewReader(msgData.Encode())
@@ -65,15 +66,17 @@ func SendText(Msg string) {
 
 // SubscribeSMS takes a phone number and send a subscription succesfull SMS
 func SubscribeSMS(Phone string) {
-	accountSid, authToken, numberFrom := Init()
+	accountSid, authToken, numberFrom, homeNumber := Init()
+
+	signUpMessage := " subscribed to SLR Maine. To unsubscribe please visit the slr-maine site. - - 'Because of global warming that has already occurred and warming that is yet to occur...sea level rise is a certain impact of climate change; the questions are When, and How Much, rather than If' NOAA - 2017"
 
 	urlStr := "https://api.twilio.com/2010-04-01/Accounts/" + accountSid + "/Messages.json"
 
-	subMsg := Phone + " subscribed to SLR Maine. To unsubscribe please visit the slr-maine site. - - 'Because of global warming that has already occurred and warming that is yet to occur...sea level rise is a certain impact of climate change; the questions are When, and How Much, rather than If' NOAA - 2017"
+	subMsg := Phone + signUpMessage
 
 	msgData := url.Values{}
 
-	msgData.Set("To", "3024232120")
+	msgData.Set("To", homeNumber)
 	msgData.Set("From", numberFrom)
 	msgData.Set("Body", subMsg)
 	msgDataReader := *strings.NewReader(msgData.Encode())
@@ -102,9 +105,10 @@ func SubscribeSMS(Phone string) {
 }
 
 // Init initializes the SMS/Twillio env variables
-func Init() (string, string, string) {
+func Init() (string, string, string, string) {
 	accountSid := os.Getenv("SMS_SID")
 	authToken := os.Getenv("SMS_TOKEN")
 	numberFrom := os.Getenv("SMS_NUMBER")
-	return accountSid, authToken, numberFrom
+	homeNumber := os.Getenv("SMS_HOME")
+	return accountSid, authToken, numberFrom, homeNumber
 }

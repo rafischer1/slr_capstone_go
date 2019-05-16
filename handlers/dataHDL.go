@@ -13,6 +13,8 @@ import (
 	"github.com/rafischer1/slr_capstone_go/sms"
 )
 
+// CRUD operations for data
+
 // GetAllData handler to handle all recorded flooding events
 func GetAllData(w http.ResponseWriter, req *http.Request) {
 	enableCors(&w)
@@ -28,7 +30,6 @@ func GetAllData(w http.ResponseWriter, req *http.Request) {
 		panic(err)
 	}
 	w.Write(resData)
-
 }
 
 // PostData recieves data from a POST to /data w/ SMS message info
